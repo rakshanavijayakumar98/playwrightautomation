@@ -7,7 +7,8 @@ test("Create Lead",async({page})=>{
     
     await page.locator(`text='CRM/SFA'`).click() //text locator type is used here, we can use text=CRM/SFA also
     await page.locator(`text='Leads'`).click() 
-    await page.locator(`text='Create Lead'`).click()
+    await page.waitForTimeout(2000) //wait for 2 seconds to load the page completely, we can use waitForSelector also to wait for a specific element to be visible
+    await page.locator(`text='Create Lead'`).first().click()
 
     await page.locator("#createLeadForm_companyName").fill("TestLeaf") //id locator type is used here, we can use [id='createLeadForm_companyName'] also
     await page.locator("#createLeadForm_firstName").fill("Raks")
@@ -17,6 +18,8 @@ test("Create Lead",async({page})=>{
     await page.locator("#createLeadForm_annualRevenue").fill("1000000")
     await page.locator("#createLeadForm_departmentName").fill("QA")
     await page.locator("#createLeadForm_primaryPhoneNumber").fill("9999999999")
+
+    await page.waitForTimeout(2000) //wait for 2 seconds to load the page completely, we can use waitForSelector also to wait for a specific element to be visible
 
     await page.locator(".smallSubmit").click() //class locator type is used here, we can use [class='smallSubmit'] also
 
