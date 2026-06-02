@@ -1,6 +1,6 @@
-import test from "@playwright/test";
+import test, {expect} from "@playwright/test";
 
-test("Create Lead",async({page})=>{
+test("Edit Individual",async({page})=>{
     await page.goto("https://login.salesforce.com/")
     await page.locator("#username").fill("dilipkumar.rajendran@testleaf.com") 
     await page.locator("#password").fill("TestLeaf@2025") 
@@ -17,7 +17,7 @@ test("Create Lead",async({page})=>{
     await page.locator(".slds-input").first().fill("Siddarth")
     await page.keyboard.press('Enter');
 
-    await page.locator("(//lightning-button-menu[@class='slds-dropdown-trigger slds-dropdown-trigger_click'])[3]").click()
+    await page.locator("(//div[@class='slds-truncate']//lst-list-view-row-level-action)").first().click()
     await page.waitForTimeout(2000)
 
     await page.locator(".forceActionLink").nth(1).click()
@@ -28,8 +28,6 @@ test("Create Lead",async({page})=>{
    await page.locator("[class='firstName compoundBorderBottom form-element__row input']").fill("Sid")
 
    await page.locator("[class=' label bBody']").last().click()
-
-   await page.locator("[text()='Sid Siddarth']")
-
+   await page.waitForTimeout(2000)
 
 })
